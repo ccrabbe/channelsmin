@@ -42,4 +42,17 @@ SECRET_KEY = '!$ij+0#8iepgyv^5y)#f5r=u-p(2x4uxo#qq6@o6wc+4nrb5pb'
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
 
+# suggested by heroku to help with static files
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 CHANNEL_ROUTING = 'routing.channel_routing'
