@@ -4,7 +4,7 @@ from otree.api import (
 )
 
 
-author = ccrabbe@caltech.edu
+author = crabbe@caltech.edu
 
 doc = """
 A minimal example app which does all the things necessary to use channels 1.0 with oTree
