@@ -1,0 +1,74 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block styles %}
+    <style>
+        .instr{
+            font-size: 24px;
+            font-weight: bold;
+            padding-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    Channels demo
+{% endblock %}
+
+{% block content %}
+    <div class="instr">
+        The group is waiting.  To move the whole group on, click the 'Done' button.
+    </div>
+    <button id="done_button" type="button">Done</button>
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+        // hide the oTree nextButton
+        var nextButton = document.getElementsByClassName("otree-btn-next btn btn-primary")[0];
+        nextButton.style.visibility = 'hidden';
+
+        // set up the path for the websocket
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var ws_path = ws_scheme + '://' + window.location.host + "/channelsmin/finished,{{ player.group_id }},{{ player.id_in_group }},{{ player.session.code }}/";
+        //console.log("ws_path=" + ws_path);
+
+        var socket = new ReconnectingWebSocket(ws_path);
+        // define what to do when the socket receives messages, opens, closes
+        socket.onmessage = function (e) {
+            console.log("socket.onmessage() called...");
+            handleMessage(e)
+        };
+        socket.onopen = function () {
+            console.log('WebSocket connected');
+        };
+        socket.onclose = function () {
+            console.log('WebSocket disconnected');
+        };
+
+        // define what happens when someone clicks the done_button
+        // ... in our case we want to send the "done" message to the server
+        $('#done_button').bind('click', function(e) {
+            var data = {
+                'type': 'done',
+            };
+            socket.send(JSON.stringify(data));
+        });
+
+        // handle incoming messages - we parse the data and if it's the server saying we're done, move on to the next
+        // page by clicking the nextButtons
+        function handleMessage(e) {
+            console.log("handleMessage() called.");
+
+            var data = JSON.parse(e.data);
+
+            console.log("data_type==" + data.type);
+            if (data.type === "done") {
+                nextButton.click();
+            }
+        }
+    </script>
+{% endblock %}
