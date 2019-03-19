@@ -1,6 +1,7 @@
 # channelsmin
 
-This is an minimal example of how I set up django channels 1.0 in oTree apps.  It loads a page which has a single button which forwards every member of the group to the next page when any single player clicks it.
+This is an minimal example of how I set up django channels 1.0 in oTree apps.  It loads a page which has a single button which forwards every member of the group to the next page when any single player clicks it.<br>
+You can see a demo here:  https://channelsmin.herokuapp.com/demo/
 
 To set up your existing oTree installation to use this scheme, you'll have to copy over routing.py and add one line to the end of your settings.py:<br>
 <code>CHANNEL_ROUTING = 'routing.channel_routing'</code>
