@@ -34,7 +34,7 @@
         // set up the path for the websocket
         var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
         var ws_path = ws_scheme + '://' + window.location.host + "/channelsmin/finished,{{ player.group_id }},{{ player.id_in_group }},{{ player.session.code }}/";
-        //console.log("ws_path=" + ws_path);
+        console.log("ws_path=" + ws_path);
 
         var socket = new ReconnectingWebSocket(ws_path);
         // define what to do when the socket receives messages, opens, closes
@@ -53,7 +53,7 @@
         // ... in our case we want to send the "done" message to the server
         $('#done_button').bind('click', function(e) {
             var data = {
-                'type': 'done',
+                'message': 'done',
             };
             socket.send(JSON.stringify(data));
         });
@@ -64,9 +64,9 @@
             console.log("handleMessage() called.");
 
             var data = JSON.parse(e.data);
-
-            console.log("data_type==" + data.type);
-            if (data.type === "done") {
+            console.log("data="+data);
+            console.log("data.message==" + data.message);
+            if (data.message === "done") {
                 nextButton.click();
             }
         }

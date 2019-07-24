@@ -41,5 +41,4 @@ SECRET_KEY = '!$ij+0#8iepgyv^5y)#f5r=u-p(2x4uxo#qq6@o6wc+4nrb5pb'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree']
-
-CHANNEL_ROUTING = 'routing.channel_routing'
+EXTENSION_APPS = ['channelsmin']
