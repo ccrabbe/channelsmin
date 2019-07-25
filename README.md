@@ -5,7 +5,7 @@ This is an minimal example of how I set up django channels 2.2 in oTree apps for
 It loads a page which has a single button which forwards every member of the group to the next page when any single player clicks it.<br>
 You can see a demo here: https://channelsmin.herokuapp.com/demo/
 
-To set up your existing oTree installation to use this scheme, you'll have to copy over routing.py and add one line to the end of your settings.py:<br>
+To set up your existing oTree installation to use this scheme, you need to add a line to the end of your settings.py (if you don't have an EXTENSION_APPS defined already):<br>
 <code>EXTENSION_APPS = []</code>
 
 
