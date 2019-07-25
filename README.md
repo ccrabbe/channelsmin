@@ -2,6 +2,8 @@
 
 This is an minimal example of how I set up django channels 2.2 in oTree apps for oTree > 2.3.0b5, as described <a href="https://otree.readthedocs.io/en/latest/misc/django.html#real-time-and-websockets"> in the oTree documentation</a>.
 
+Older versions of this project demonstrated how to use channels 1.x for oTree < 2.3.0b5.  You can check out versions from March 19 2019 or before for that revision.
+
 It loads a page which has a single button which forwards every member of the group to the next page when any single player clicks it.<br>
 You can see a demo here: https://channelsmin.herokuapp.com/demo/
 
