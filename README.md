@@ -19,7 +19,7 @@ For each app which uses channels, you need to:<br>
   Add a consumers.py to the root directory of your new app which defines the consumer you intend to use.  There are 5 functions to implement based on oTree's _OTreeJsonWebsocketConsumer class.  It's also possible to write a simpler consumer like in the <a href="https://channels.readthedocs.io/en/latest/tutorial/part_2.html#enable-a-channel-layer">Channels tutorial</a> but I've chosen to use oTree's model.   
 </li>
 <li>
-  Add an otree_extensions/routing.py to your app like the one defined in this example, being careful to create a custom websocket URL for your app, and referrint to the consumer defined above.
+  Add an otree_extensions/routing.py to your app like the one defined in this example, being careful to create a custom websocket URL for your app, and referring to the consumer defined above.
 </li>
 
 <li>Add javascript functionality to your page which sets up the websocket (using the URL pattern defined in your routing.py) and connects and also other functionality to actually do what you need to do in your app.  See this example's MyPage.html for reference.</li>
