@@ -128,12 +128,9 @@ class ChannelsMinConsumer(_OTreeJsonWebsocketConsumer):
 
     # parse messages of type channelsmin_message
     def channelsmin_message(self, event):
-        message = event['message']
 
         # Send message to WebSocket
-        self.send(text_data=json.dumps({
-            'message': message
-        }))
+        self.send(text_data=json.dumps(event))
 
     # perform actions neccesary to add a subject to their group's channel_layer.  In our case, if a group has already ended
     # we need to send them a message saying that, so that they can go to the end page too
@@ -154,7 +151,7 @@ class ChannelsMinConsumer(_OTreeJsonWebsocketConsumer):
                 print("inside ws_add, checking to see if group's first page is done.  firstpage_done=" + str(
                     group_object.firstpage_done))
 
-                # prepare the message to send
+                # prepare the message to send - need to give a 'type' so that channels can call the appropriate parsing function
                 reply = {
                     'type': 'channelsmin_message',
                     'message': 'done',
@@ -204,7 +201,8 @@ class ChannelsMinConsumer(_OTreeJsonWebsocketConsumer):
                         'message': 'done'
                     }
 
-                    # send the message
+                    # send the message to the whole group.  If you wanted to send an individual message you'd use
+                    # self.send_json(reply)
                     async_to_sync(self.channel_layer.group_send)(
                         self.room_group_name,
                         reply
