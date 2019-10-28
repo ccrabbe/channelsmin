@@ -197,7 +197,7 @@ class ChannelsMinConsumer(_OTreeJsonWebsocketConsumer):
 
                     # prepare the message to send
                     reply = {
-                        'type': 'channelsmin_type',
+                        'type': 'channelsmin_message',
                         'message': 'done'
                     }
 
