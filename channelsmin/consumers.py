@@ -11,7 +11,7 @@ UNRESTRICTED_IN_DEMO_MODE = 'UNRESTRICTED_IN_DEMO_MODE'
 import logging
 logger = logging.getLogger(__name__)
 
-from otree.common_internal import (
+from otree.common import (
     get_models_module
 )
 from asgiref.sync import async_to_sync
